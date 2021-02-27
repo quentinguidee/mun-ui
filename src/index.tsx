@@ -14,6 +14,7 @@ export * from './components/Header/HeaderSpace'
 export * from './components/Header/HeaderAccount'
 
 export * from './components/Form/TextField'
+export * from './components/Form/TextAreaField'
 export * from './components/Form/NumberField'
 
 export * from './components/Table/Cell'
