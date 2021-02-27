@@ -7,7 +7,7 @@ export const HeaderLink: any = styled(NavLink)`
     color: ${(props) => props.theme.color.secondaryText};
     text-decoration: none;
     display: inline-block;
-    padding: 5px 12px;
+    padding: 6px 12px;
     margin: 0 4px;
     border-radius: 6px;
     transition: all 0.1s;
