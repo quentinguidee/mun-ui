@@ -1,36 +1,20 @@
 import React from 'react'
 
-import {
-    Header,
-    HeaderAccount,
-    HeaderLink,
-    HeaderLinks,
-    HeaderLogo,
-    HeaderSpace,
-    darkTheme,
-    MunApp
-} from 'mun-ui'
+import 'mun-ui/dist/index.css'
+
+import { darkTheme, MunApp } from 'mun-ui'
 import { ThemeProvider } from '@emotion/react'
 import { BrowserRouter } from 'react-router-dom'
+import Header from './components/Header'
+import TablePage from './pages/TablePage'
 
 const App = () => {
     return (
         <ThemeProvider theme={darkTheme}>
             <MunApp>
                 <BrowserRouter>
-                    <Header>
-                        <HeaderLogo>Mun UI</HeaderLogo>
-                        <HeaderSpace />
-                        <HeaderLinks>
-                            <HeaderLink to='/first'>First</HeaderLink>
-                            <HeaderLink to='/second'>Second</HeaderLink>
-                        </HeaderLinks>
-                        <HeaderSpace grow={5} />
-                        <HeaderAccount
-                            src='https://picsum.photos/seed/seed/40'
-                            name='Username'
-                        />
-                    </Header>
+                    <Header />
+                    <TablePage />
                 </BrowserRouter>
             </MunApp>
         </ThemeProvider>

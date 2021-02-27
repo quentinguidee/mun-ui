@@ -15,7 +15,7 @@ declare module '@emotion/react' {
 export const lightTheme = {
     color: {
         background: '#fff',
-        secondaryBackground: '#e7e7e7',
+        secondaryBackground: '#eeeeee',
         thirdBackground: '#dbdbdb',
         text: '#000',
         secondaryText: '#2e2e2e'
@@ -27,7 +27,7 @@ export const darkTheme = {
         background: '#0f0f0f',
         secondaryBackground: '#181818',
         thirdBackground: '#242424',
-        text: '#f1f1f1',
-        secondaryText: '#b9b9b9'
+        text: '#e7e7e7',
+        secondaryText: '#a7a7a7'
     }
 }
