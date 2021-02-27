@@ -15,8 +15,8 @@ export default class Header extends Component {
                 <HeaderLogo>Mun UI</HeaderLogo>
                 <HeaderSpace />
                 <HeaderLinks>
-                    <HeaderLink to='/first'>First</HeaderLink>
-                    <HeaderLink to='/second'>Second</HeaderLink>
+                    <HeaderLink to='/table'>Table</HeaderLink>
+                    <HeaderLink to='/form'>Form</HeaderLink>
                 </HeaderLinks>
                 <HeaderSpace grow={5} />
                 <HeaderAccount
