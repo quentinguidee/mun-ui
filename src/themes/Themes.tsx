@@ -9,6 +9,9 @@ declare module '@emotion/react' {
             text: string
             secondaryText: string
             accent: string
+            checkboxTrue: string
+            checkboxUndef: string
+            checkboxFalse: string
         }
     }
 }
@@ -20,7 +23,10 @@ export const lightTheme = {
         thirdBackground: '#dbdbdb',
         text: '#000',
         secondaryText: '#2e2e2e',
-        accent: '#39a0cf'
+        accent: '#39a0cf',
+        checkboxTrue: '#66bb6a',
+        checkboxUndef: '#eeeeee',
+        checkboxFalse: '#ef5350'
     }
 }
 
@@ -31,6 +37,9 @@ export const darkTheme = {
         thirdBackground: '#353535',
         text: '#e7e7e7',
         secondaryText: '#a7a7a7',
-        accent: '#2c83ac'
+        accent: '#2c83ac',
+        checkboxTrue: '#408a31',
+        checkboxUndef: '#222222',
+        checkboxFalse: '#862e2e'
     }
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {
+    CheckboxExtendedField,
     Container,
     TextField,
     NumberField,
@@ -21,6 +22,7 @@ export default class FormPage extends Component {
                     <TextAreaField name='description' label='Description' />
                     <SelectField name='selection' label='Selection' />
                     <SelectField name='color' label='Color' />
+                    <CheckboxExtendedField name='boolean' label='Boolean' />
                 </FormGroup>
             </Container>
         )
