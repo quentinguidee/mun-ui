@@ -14,6 +14,7 @@ const Dropdown = styled.div<DropdownProps>`
     margin-top: 4px;
     min-width: 216px;
     margin: 2px;
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.09), 0 7px 8px rgba(0, 0, 0, 0.06);
 `
 
 const Item = styled.div`
