@@ -11,6 +11,7 @@ const Dropdown = styled.div<DropdownProps>`
     border-radius: 6px;
     display: ${(props) => (props.show ? 'block' : 'none')};
     position: absolute;
+    z-index: 30;
     margin-top: 4px;
     min-width: 216px;
     margin: 2px;
@@ -55,6 +56,7 @@ export type SelectValue = Value
 type SelectInputProps = {
     onFieldFocus?: () => void
     onSelectCallback?: (value: Value) => void
+    clearAfterSelection: boolean
     values: Value[]
 }
 
@@ -82,6 +84,7 @@ export class SelectInput extends Component<SelectInputProps, SelectInputState> {
 
         this.onFieldFocus = this.onFieldFocus.bind(this)
         this.onFieldChange = this.onFieldChange.bind(this)
+        this.clear = this.clear.bind(this)
         this.closeDropdown = this.closeDropdown.bind(this)
         this.selectItem = this.selectItem.bind(this)
     }
@@ -121,9 +124,19 @@ export class SelectInput extends Component<SelectInputProps, SelectInputState> {
     }
 
     selectItem(value: Value) {
-        this.setState({ selected: value, inputValue: value.label })
+        this.setState({
+            selected: value,
+            inputValue: this.props.clearAfterSelection ? '' : value.label
+        })
         if (this.props.onSelectCallback) this.props.onSelectCallback(value)
         this.closeDropdown()
+    }
+
+    clear() {
+        this.setState({
+            selected: undefined,
+            inputValue: ''
+        })
     }
 
     render() {
@@ -133,6 +146,8 @@ export class SelectInput extends Component<SelectInputProps, SelectInputState> {
                     value={this.state.inputValue}
                     onFocus={this.onFieldFocus}
                     onChange={this.onFieldChange}
+                    onClear={this.clear}
+                    showClear={this.state.inputValue.length !== 0}
                 />
                 <Dropdown show={this.state.focused}>
                     {this.state.values.map((value) => {

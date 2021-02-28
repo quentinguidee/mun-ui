@@ -65,6 +65,7 @@ export class SelectMultipleField extends Component<
                     {...this.props}
                     values={this.props.values}
                     onSelectCallback={this.select}
+                    clearAfterSelection
                 />
             </Field>
         )

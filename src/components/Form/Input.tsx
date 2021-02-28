@@ -1,6 +1,9 @@
+/** @jsx jsx */
 import styled from '@emotion/styled'
+import { css, jsx } from '@emotion/react'
+import { Component } from 'react'
 
-export const Input = styled.input`
+const StyledInput = styled.input`
     background-color: ${(props) => props.theme.color.secondaryBackground};
     outline: none;
     border-radius: 6px;
@@ -19,3 +22,66 @@ export const Input = styled.input`
         margin: 0;
     }
 `
+
+type ClearProps = {
+    onClear?: () => void
+    show?: boolean
+}
+
+export class Clear extends Component<ClearProps> {
+    render() {
+        return (
+            <span
+                className='material-icons-round'
+                css={(theme) =>
+                    css(`
+                        background-color: ${theme.color.thirdBackground};
+                        color: ${theme.color.secondaryText};
+                        border-radius: 50%;
+                        font-size: 17px;
+                        padding: 2px;
+                        cursor: pointer;
+                        display: ${this.props.show ? 'block' : 'none'};
+                        position: absolute;
+                        z-index: 10;
+                        right: 12px;
+                        top: 10px;
+                        transition: all 0.1s;
+                        &:hover {
+                            background-color: ${
+                                theme.color.secondaryBackground
+                            };
+                        }
+                    `)
+                }
+                onClick={this.props.onClear}
+            >
+                clear
+            </span>
+        )
+    }
+}
+
+type InputProps = React.DetailedHTMLProps<
+    React.InputHTMLAttributes<HTMLInputElement>,
+    HTMLInputElement
+> & {
+    onClear?: () => void
+    showClear?: boolean
+}
+
+export class Input extends Component<InputProps> {
+    render() {
+        return (
+            <div style={{ position: 'relative' }}>
+                <StyledInput {...this.props} />
+                {this.props.onClear && (
+                    <Clear
+                        onClear={this.props.onClear}
+                        show={this.props.showClear}
+                    />
+                )}
+            </div>
+        )
+    }
+}
