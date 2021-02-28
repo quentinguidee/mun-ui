@@ -1,5 +1,7 @@
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
 import styled from '@emotion/styled'
-import React, { Component } from 'react'
+import { Component } from 'react'
 import { Field } from './Field'
 import { SelectInput, SelectValue } from './SelectInput'
 import { TextFieldProps } from './TextField'
@@ -13,15 +15,25 @@ const Div = styled.div`
     border-radius: 6px;
     margin: 4px 0;
     margin-right: 4px;
+    cursor: pointer;
+    transition: all 0.1s;
+    &:hover {
+        background-color: ${(props) => props.theme.color.red};
+    }
 `
 
 type TagProps = {
-    label: string
+    value: SelectValue
+    clear: (value: SelectValue) => void
 }
 
 class Tag extends Component<TagProps> {
     render() {
-        return <Div>{this.props.label}</Div>
+        return (
+            <Div onClick={() => this.props.clear(this.props.value)}>
+                {this.props.value.label}
+            </Div>
+        )
     }
 }
 
@@ -45,6 +57,7 @@ export class SelectMultipleField extends Component<
         }
 
         this.select = this.select.bind(this)
+        this.clear = this.clear.bind(this)
     }
 
     select(value: SelectValue) {
@@ -55,11 +68,21 @@ export class SelectMultipleField extends Component<
         })
     }
 
+    clear(value: SelectValue) {
+        this.setState({
+            selectedValues: [
+                ...this.state.selectedValues.filter((v) => v !== value)
+            ]
+        })
+    }
+
     render() {
         return (
             <Field name={this.props.name} label={this.props.label}>
                 {this.state.selectedValues.map((value) => {
-                    return <Tag key={value.key} label={value.label} />
+                    return (
+                        <Tag key={value.key} value={value} clear={this.clear} />
+                    )
                 })}
                 <SelectInput
                     {...this.props}

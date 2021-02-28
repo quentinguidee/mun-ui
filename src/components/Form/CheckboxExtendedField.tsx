@@ -45,7 +45,7 @@ class CheckboxItem extends Component<CheckboxItemProps> {
                         &:hover {
                             background-color: ${
                                 this.props.selected
-                                    ? this.props.color
+                                    ? theme.color[this.props.color]
                                     : theme.color.secondaryBackground
                             };
                         }
@@ -97,21 +97,21 @@ export class CheckboxExtendedField extends Component<
         return (
             <Field name={this.props.name} label={this.props.label}>
                 <CheckboxItem
-                    color='checkboxFalse'
+                    color='red'
                     type='false'
                     icon='clear'
                     onClickCallback={this.select}
                     selected={this.state.selection === 'false'}
                 />
                 <CheckboxItem
-                    color='checkboxUndef'
+                    color='secondaryBackground'
                     type='undef'
                     icon='remove'
                     onClickCallback={this.select}
                     selected={this.state.selection === 'undef'}
                 />
                 <CheckboxItem
-                    color='checkboxTrue'
+                    color='green'
                     type='true'
                     icon='check'
                     onClickCallback={this.select}
