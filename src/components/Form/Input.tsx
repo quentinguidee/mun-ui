@@ -9,6 +9,8 @@ export const Input = styled.input`
     padding: 8px 12px;
     font-size: 15px;
     transition: all 0.1s;
+    display: inline-block;
+    min-width: 190px;
     &:focus {
         border-color: ${(props) => props.theme.color.accent};
     }

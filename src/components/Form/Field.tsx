@@ -13,6 +13,7 @@ const Label = styled.label`
 
 const StyledField = styled.div`
     margin: 20px 0;
+    display: inline-block;
 `
 
 type TextFieldProps = {

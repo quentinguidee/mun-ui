@@ -16,6 +16,7 @@ export * from './components/Header/HeaderAccount'
 export * from './components/Form/TextField'
 export * from './components/Form/TextAreaField'
 export * from './components/Form/NumberField'
+export * from './components/Form/SelectField'
 
 export * from './components/Table/Cell'
 export * from './components/Table/Row'
