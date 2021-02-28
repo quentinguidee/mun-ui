@@ -17,6 +17,7 @@ const StyledField = styled.div`
     margin: 20px 10px;
     display: inline-block;
     vertical-align: top;
+    align-self: flex-start;
 `
 
 type TextFieldProps = {
