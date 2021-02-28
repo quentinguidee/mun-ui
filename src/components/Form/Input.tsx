@@ -12,4 +12,8 @@ export const Input = styled.input`
     &:focus {
         border-color: ${(props) => props.theme.color.accent};
     }
+    &::-webkit-inner-spin-button {
+        appearance: none;
+        margin: 0;
+    }
 `
