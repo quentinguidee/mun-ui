@@ -20,7 +20,7 @@ export const lightTheme = {
         thirdBackground: '#dbdbdb',
         text: '#000',
         secondaryText: '#2e2e2e',
-        accent: '#2c83ac'
+        accent: '#39a0cf'
     }
 }
 
