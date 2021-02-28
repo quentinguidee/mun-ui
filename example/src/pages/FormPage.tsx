@@ -20,8 +20,35 @@ export default class FormPage extends Component {
                 <FormGroup column title='Complementary'>
                     <NumberField name='number' label='Number' />
                     <TextAreaField name='description' label='Description' />
-                    <SelectField name='selection' label='Selection' />
-                    <SelectField name='color' label='Color' />
+                    <SelectField
+                        name='selection'
+                        label='Selection'
+                        values={[
+                            {
+                                key: 'one',
+                                label: 'One'
+                            },
+                            {
+                                key: 'two',
+                                label: 'Two'
+                            }
+                        ]}
+                    />
+                    <SelectField
+                        name='color'
+                        label='Color'
+                        values={[
+                            {
+                                key: 'one',
+                                label: 'One'
+                            },
+                            {
+                                key: 'two',
+                                label: 'Two'
+                            }
+                        ]}
+                        multiple
+                    />
                     <CheckboxExtendedField name='boolean' label='Boolean' />
                 </FormGroup>
             </Container>

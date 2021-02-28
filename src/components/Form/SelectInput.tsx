@@ -58,6 +58,7 @@ class DropdownItem extends Component<DropdownItemProps> {
 }
 
 type Value = { key: string; label: string }
+export type SelectValue = Value
 
 type SelectInputProps = {
     onFieldFocus?: () => void
