@@ -81,6 +81,7 @@ export class Input extends Component<InputProps> {
                         show={this.props.showClear}
                     />
                 )}
+                {this.props.children}
             </div>
         )
     }

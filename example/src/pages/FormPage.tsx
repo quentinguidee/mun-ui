@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {
+    ArrayTextField,
     CheckboxExtendedField,
     Container,
     TextField,
@@ -50,6 +51,7 @@ export default class FormPage extends Component {
                         ]}
                     />
                     <CheckboxExtendedField name='boolean' label='Boolean' />
+                    <ArrayTextField name='array' label='Array' />
                 </FormGroup>
             </Container>
         )
