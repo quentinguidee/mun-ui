@@ -35,23 +35,15 @@ const Item = styled.div`
 `
 
 type DropdownItemProps = {
-    name: string
-    label: string
-    onClickCallback: (name: string, label: string) => void
+    value: Value
+    onClickCallback: (value: Value) => void
 }
 
 class DropdownItem extends Component<DropdownItemProps> {
     render() {
         return (
-            <Item
-                onClick={() =>
-                    this.props.onClickCallback(
-                        this.props.name,
-                        this.props.label
-                    )
-                }
-            >
-                {this.props.label}
+            <Item onClick={() => this.props.onClickCallback(this.props.value)}>
+                {this.props.value.label}
             </Item>
         )
     }
@@ -62,12 +54,13 @@ export type SelectValue = Value
 
 type SelectInputProps = {
     onFieldFocus?: () => void
+    onSelectCallback?: (value: Value) => void
     values: Value[]
 }
 
 type SelectInputState = {
     focused: boolean
-    selected: string
+    selected: Value | undefined
     inputValue: string
     values: Value[]
 }
@@ -80,7 +73,7 @@ export class SelectInput extends Component<SelectInputProps, SelectInputState> {
 
         this.state = {
             focused: false,
-            selected: '',
+            selected: undefined,
             inputValue: '',
             values: this.props.values
         }
@@ -127,8 +120,9 @@ export class SelectInput extends Component<SelectInputProps, SelectInputState> {
         document.removeEventListener('mousedown', this.onMouseDown)
     }
 
-    selectItem(name: string, label: string) {
-        this.setState({ selected: name, inputValue: label })
+    selectItem(value: Value) {
+        this.setState({ selected: value, inputValue: value.label })
+        if (this.props.onSelectCallback) this.props.onSelectCallback(value)
         this.closeDropdown()
     }
 
@@ -141,13 +135,12 @@ export class SelectInput extends Component<SelectInputProps, SelectInputState> {
                     onChange={this.onFieldChange}
                 />
                 <Dropdown show={this.state.focused}>
-                    {this.state.values.map((element) => {
+                    {this.state.values.map((value) => {
                         return (
                             <DropdownItem
                                 onClickCallback={this.selectItem}
-                                key={element.key}
-                                name={element.key}
-                                label={element.label}
+                                key={value.key}
+                                value={value}
                             />
                         )
                     })}

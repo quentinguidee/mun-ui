@@ -6,6 +6,7 @@ import {
     NumberField,
     TextAreaField,
     SelectField,
+    SelectMultipleField,
     FormGroup
 } from 'mun-ui'
 
@@ -34,7 +35,7 @@ export default class FormPage extends Component {
                             }
                         ]}
                     />
-                    <SelectField
+                    <SelectMultipleField
                         name='color'
                         label='Color'
                         values={[
@@ -47,7 +48,6 @@ export default class FormPage extends Component {
                                 label: 'Two'
                             }
                         ]}
-                        multiple
                     />
                     <CheckboxExtendedField name='boolean' label='Boolean' />
                 </FormGroup>
