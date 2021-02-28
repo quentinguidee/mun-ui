@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import React, { Component } from 'react'
+import React, { ChangeEvent, Component } from 'react'
 import { Input } from './Input'
 
 type DropdownProps = {
@@ -16,7 +16,7 @@ const Dropdown = styled.div<DropdownProps>`
     margin: 2px;
 `
 
-const DropdownItem = styled.div`
+const Item = styled.div`
     padding: 6px 12px;
     margin: 0 6px;
     border-radius: 4px;
@@ -33,12 +33,41 @@ const DropdownItem = styled.div`
     }
 `
 
+type DropdownItemProps = {
+    name: string
+    label: string
+    onClickCallback: (name: string, label: string) => void
+}
+
+class DropdownItem extends Component<DropdownItemProps> {
+    render() {
+        return (
+            <Item
+                onClick={() =>
+                    this.props.onClickCallback(
+                        this.props.name,
+                        this.props.label
+                    )
+                }
+            >
+                {this.props.label}
+            </Item>
+        )
+    }
+}
+
+type Value = { key: string; label: string }
+
 type SelectInputProps = {
     onFieldFocus?: () => void
+    values: Value[]
 }
 
 type SelectInputState = {
     focused: boolean
+    selected: string
+    inputValue: string
+    values: Value[]
 }
 
 export class SelectInput extends Component<SelectInputProps, SelectInputState> {
@@ -48,13 +77,18 @@ export class SelectInput extends Component<SelectInputProps, SelectInputState> {
         super(props)
 
         this.state = {
-            focused: false
+            focused: false,
+            selected: '',
+            inputValue: '',
+            values: this.props.values
         }
 
         this.ref = React.createRef()
 
         this.onFieldFocus = this.onFieldFocus.bind(this)
+        this.onFieldChange = this.onFieldChange.bind(this)
         this.closeDropdown = this.closeDropdown.bind(this)
+        this.selectItem = this.selectItem.bind(this)
     }
 
     componentWillUnmount() {
@@ -65,6 +99,19 @@ export class SelectInput extends Component<SelectInputProps, SelectInputState> {
         this.setState({ focused: true })
         document.addEventListener('mousedown', this.onMouseDown)
         if (this.props.onFieldFocus) this.props.onFieldFocus()
+    }
+
+    onFieldChange(e: ChangeEvent<HTMLInputElement>) {
+        const value = e.target.value
+
+        const values = this.props.values.filter((v) => {
+            return v.label.toLowerCase().includes(value.toLowerCase())
+        })
+
+        this.setState({
+            inputValue: value,
+            values: values
+        })
     }
 
     onMouseDown = (e: MouseEvent) => {
@@ -78,14 +125,30 @@ export class SelectInput extends Component<SelectInputProps, SelectInputState> {
         document.removeEventListener('mousedown', this.onMouseDown)
     }
 
+    selectItem(name: string, label: string) {
+        this.setState({ selected: name, inputValue: label })
+        this.closeDropdown()
+    }
+
     render() {
         return (
             <div ref={this.ref}>
-                <Input onFocus={this.onFieldFocus} />
+                <Input
+                    value={this.state.inputValue}
+                    onFocus={this.onFieldFocus}
+                    onChange={this.onFieldChange}
+                />
                 <Dropdown show={this.state.focused}>
-                    <DropdownItem>Item 1</DropdownItem>
-                    <DropdownItem>Item 2</DropdownItem>
-                    <DropdownItem>Item 3</DropdownItem>
+                    {this.state.values.map((element) => {
+                        return (
+                            <DropdownItem
+                                onClickCallback={this.selectItem}
+                                key={element.key}
+                                name={element.key}
+                                label={element.label}
+                            />
+                        )
+                    })}
                 </Dropdown>
             </div>
         )

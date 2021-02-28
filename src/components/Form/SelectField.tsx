@@ -9,7 +9,19 @@ export class SelectField extends Component<SelectFieldProps> {
     render() {
         return (
             <Field name={this.props.name} label={this.props.label}>
-                <SelectInput {...this.props} />
+                <SelectInput
+                    values={[
+                        {
+                            key: 'one',
+                            label: 'One'
+                        },
+                        {
+                            key: 'two',
+                            label: 'Two'
+                        }
+                    ]}
+                    {...this.props}
+                />
             </Field>
         )
     }
