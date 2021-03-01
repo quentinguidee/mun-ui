@@ -55,7 +55,7 @@ export type SelectValue = Value
 
 type SelectInputProps = {
     onFieldFocus?: () => void
-    onSelectCallback?: (value: Value) => void
+    onSelectCallback?: (value: Value | undefined) => void
     clearAfterSelection?: boolean
     values: Value[]
 }
@@ -137,6 +137,7 @@ export class SelectInput extends Component<SelectInputProps, SelectInputState> {
             selected: undefined,
             inputValue: ''
         })
+        if (this.props.onSelectCallback) this.props.onSelectCallback(undefined)
     }
 
     render() {
