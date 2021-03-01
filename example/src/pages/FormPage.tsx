@@ -18,12 +18,22 @@ export default class FormPage extends Component {
         return (
             <Container>
                 <FormGroup row title='Basic'>
-                    <TextField name='name' label='Name' />
+                    <TextField
+                        name='name'
+                        label='Name'
+                        regex='^[A-Z]'
+                        regexMessage='First letter should be uppercase'
+                    />
                     <TextField name='username' label='Username' />
                 </FormGroup>
                 <FormGroup column title='Complementary'>
                     <NumberField name='number' label='Number' />
-                    <TextAreaField name='description' label='Description' />
+                    <TextAreaField
+                        name='description'
+                        label='Description'
+                        regex='^[A-Z].*\.$'
+                        regexMessage='First letter should be uppercase'
+                    />
                     <SelectField
                         name='selection'
                         label='Selection'

@@ -7,13 +7,15 @@ import {
     Container,
     Row,
     Table,
-    ColorCell
+    ColorCell,
+    Button
 } from 'mun-ui'
 
 export default class TablePage extends Component {
     render() {
         return (
             <Container>
+                <Button style={{ marginBottom: '12px' }}>New</Button>
                 <Table>
                     <Row header>
                         <Cell>ID</Cell>

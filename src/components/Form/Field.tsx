@@ -1,5 +1,13 @@
 import styled from '@emotion/styled'
 import React, { Component } from 'react'
+import { Message } from './FieldMessage'
+
+export enum FieldStatus {
+    Undef = 'undef',
+    Valid = 'valid',
+    Warning = 'warning',
+    Error = 'error'
+}
 
 const Label = styled.label`
     display: block;
@@ -20,17 +28,28 @@ const StyledField = styled.div`
     align-self: flex-start;
 `
 
-type TextFieldProps = {
-    name?: string
+export interface IFieldProps {
     label?: string
+    regex?: string
+    regexMessage?: string
 }
 
-export class Field extends Component<TextFieldProps> {
+type FieldProps = {
+    name?: string
+    label?: string
+    status?: FieldStatus
+    regexMessage?: string
+}
+
+export class Field extends Component<FieldProps> {
     render() {
         return (
             <StyledField>
                 <Label htmlFor={this.props.name}>{this.props.label}</Label>
                 {this.props.children}
+                <Message status={this.props.status}>
+                    {this.props.regexMessage}
+                </Message>
             </StyledField>
         )
     }

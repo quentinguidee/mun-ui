@@ -4,6 +4,8 @@ export * from './themes/Themes'
 
 export * from './components/App/App'
 
+export * from './components/Button/Button'
+
 export * from './components/Container/Container'
 
 export * from './components/Header/Header'

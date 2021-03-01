@@ -10,6 +10,7 @@ declare module '@emotion/react' {
             secondaryText: string
             accent: string
             green: string
+            yellow: string
             red: string
         }
     }
@@ -24,6 +25,7 @@ export const lightTheme = {
         secondaryText: '#2e2e2e',
         accent: '#39a0cf',
         green: '#66bb6a',
+        yellow: '#d6b33f',
         red: '#ef5350'
     }
 }
@@ -37,6 +39,7 @@ export const darkTheme = {
         secondaryText: '#a7a7a7',
         accent: '#2c83ac',
         green: '#408a31',
+        yellow: '#c5a050',
         red: '#862e2e'
     }
 }

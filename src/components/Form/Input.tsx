@@ -72,14 +72,13 @@ type InputProps = React.DetailedHTMLProps<
 
 export class Input extends Component<InputProps> {
     render() {
+        const { onClear, ...props } = this.props
+
         return (
             <div style={{ position: 'relative' }}>
-                <StyledInput {...this.props} />
+                <StyledInput {...props} />
                 {this.props.onClear && (
-                    <Clear
-                        onClear={this.props.onClear}
-                        show={this.props.showClear}
-                    />
+                    <Clear onClear={onClear} show={this.props.showClear} />
                 )}
                 {this.props.children}
             </div>
