@@ -58,8 +58,12 @@ class Item extends Component<ItemProps> {
 
 type Value = { number: number; value: SelectValue }
 
-type ArrayNumberAndSelectFieldProps = Omit<TextFieldProps, 'ref'> & {
+type ArrayNumberAndSelectFieldProps = Omit<
+    Omit<TextFieldProps, 'ref'>,
+    'onChangeCallback'
+> & {
     values: SelectValue[]
+    onChangeCallback?: (values: Value[]) => void
 }
 
 type ArrayNumberAndSelectFieldState = {
@@ -96,23 +100,35 @@ export class ArrayNumberAndSelectField extends Component<
         if (this.state.values.some((v) => v.value === this.state.selectValue))
             return
 
-        this.setState({
-            values: [
-                ...this.state.values,
-                {
-                    number: Number.parseFloat(this.state.numberValue),
-                    value: this.state.selectValue
-                }
-            ],
-            numberValue: '',
-            selectValue: undefined
-        })
+        this.setState(
+            {
+                values: [
+                    ...this.state.values,
+                    {
+                        number: Number.parseFloat(this.state.numberValue),
+                        value: this.state.selectValue
+                    }
+                ],
+                numberValue: '',
+                selectValue: undefined
+            },
+            () => {
+                if (this.props.onChangeCallback)
+                    this.props.onChangeCallback(this.state.values)
+            }
+        )
     }
 
     clear(value: Value) {
-        this.setState({
-            values: this.state.values.filter((v) => v !== value)
-        })
+        this.setState(
+            {
+                values: this.state.values.filter((v) => v !== value)
+            },
+            () => {
+                if (this.props.onChangeCallback)
+                    this.props.onChangeCallback(this.state.values)
+            }
+        )
     }
 
     onNumberChange(e: ChangeEvent<HTMLInputElement>) {

@@ -57,7 +57,12 @@ class Item extends Component<ItemProps> {
 
 type Value = { number: number; value: string }
 
-type ArrayTextFieldProps = Omit<TextFieldProps, 'ref'> & {}
+type ArrayTextFieldProps = Omit<
+    Omit<TextFieldProps, 'ref'>,
+    'onChangeCallback'
+> & {
+    onChangeCallback?: (values: Value[]) => void
+}
 
 type ArrayTextFieldState = {
     numberValue: string
@@ -93,23 +98,35 @@ export class ArrayNumberAndTextField extends Component<
             return
         }
 
-        this.setState({
-            values: [
-                ...this.state.values,
-                {
-                    number: Number.parseFloat(this.state.numberValue),
-                    value: this.state.inputValue
-                }
-            ],
-            numberValue: '',
-            inputValue: ''
-        })
+        this.setState(
+            {
+                values: [
+                    ...this.state.values,
+                    {
+                        number: Number.parseFloat(this.state.numberValue),
+                        value: this.state.inputValue
+                    }
+                ],
+                numberValue: '',
+                inputValue: ''
+            },
+            () => {
+                if (this.props.onChangeCallback)
+                    this.props.onChangeCallback(this.state.values)
+            }
+        )
     }
 
     clear(value: Value) {
-        this.setState({
-            values: this.state.values.filter((v) => v !== value)
-        })
+        this.setState(
+            {
+                values: this.state.values.filter((v) => v !== value)
+            },
+            () => {
+                if (this.props.onChangeCallback)
+                    this.props.onChangeCallback(this.state.values)
+            }
+        )
     }
 
     onNumberChange(e: ChangeEvent<HTMLInputElement>) {

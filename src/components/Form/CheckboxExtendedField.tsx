@@ -69,6 +69,7 @@ type CheckboxExtendedFieldProps = React.DetailedHTMLProps<
     HTMLInputElement
 > & {
     label?: string
+    onChangeCallback?: (value: string) => void
 }
 
 type CheckboxExtendedFieldState = {
@@ -91,6 +92,7 @@ export class CheckboxExtendedField extends Component<
 
     select(item: string) {
         this.setState({ selection: item })
+        if (this.props.onChangeCallback) this.props.onChangeCallback(item)
     }
 
     render() {

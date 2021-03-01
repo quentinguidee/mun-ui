@@ -55,7 +55,12 @@ class Item extends Component<ItemProps> {
     }
 }
 
-type ArrayTextFieldProps = Omit<TextFieldProps, 'ref'> & {}
+type ArrayTextFieldProps = Omit<
+    Omit<TextFieldProps, 'ref'>,
+    'onChangeCallback'
+> & {
+    onChangeCallback?: (values: string[]) => void
+}
 
 type ArrayTextFieldState = {
     inputValue: string
@@ -83,16 +88,28 @@ export class ArrayTextField extends Component<
     add() {
         if (this.state.inputValue.length === 0) return
 
-        this.setState({
-            values: [...this.state.values, this.state.inputValue],
-            inputValue: ''
-        })
+        this.setState(
+            {
+                values: [...this.state.values, this.state.inputValue],
+                inputValue: ''
+            },
+            () => {
+                if (this.props.onChangeCallback)
+                    this.props.onChangeCallback(this.state.values)
+            }
+        )
     }
 
     clear(value: string) {
-        this.setState({
-            values: this.state.values.filter((v) => v !== value)
-        })
+        this.setState(
+            {
+                values: this.state.values.filter((v) => v !== value)
+            },
+            () => {
+                if (this.props.onChangeCallback)
+                    this.props.onChangeCallback(this.state.values)
+            }
+        )
     }
 
     onInputChange(e: ChangeEvent<HTMLInputElement>) {

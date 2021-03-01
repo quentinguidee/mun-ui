@@ -37,8 +37,10 @@ class Tag extends Component<TagProps> {
     }
 }
 
-interface SelectMultipleFieldProps extends Omit<TextFieldProps, 'ref'> {
+interface SelectMultipleFieldProps
+    extends Omit<Omit<TextFieldProps, 'ref'>, 'onChangeCallback'> {
     values: SelectValue[]
+    onChangeCallback?: (values: SelectValue[]) => void
 }
 
 type SelectMultipleFieldState = {
@@ -63,17 +65,29 @@ export class SelectMultipleField extends Component<
     select(value: SelectValue) {
         if (this.state.selectedValues.includes(value)) return
 
-        this.setState({
-            selectedValues: [...this.state.selectedValues, value]
-        })
+        this.setState(
+            {
+                selectedValues: [...this.state.selectedValues, value]
+            },
+            () => {
+                if (this.props.onChangeCallback)
+                    this.props.onChangeCallback(this.state.selectedValues)
+            }
+        )
     }
 
     clear(value: SelectValue) {
-        this.setState({
-            selectedValues: [
-                ...this.state.selectedValues.filter((v) => v !== value)
-            ]
-        })
+        this.setState(
+            {
+                selectedValues: [
+                    ...this.state.selectedValues.filter((v) => v !== value)
+                ]
+            },
+            () => {
+                if (this.props.onChangeCallback)
+                    this.props.onChangeCallback(this.state.selectedValues)
+            }
+        )
     }
 
     render() {
