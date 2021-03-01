@@ -13,6 +13,7 @@ export * from './components/Header/HeaderLink'
 export * from './components/Header/HeaderSpace'
 export * from './components/Header/HeaderAccount'
 
+export * from './components/Form/ArrayNumberAndTextField'
 export * from './components/Form/ArrayTextField'
 export * from './components/Form/CheckboxExtendedField'
 export * from './components/Form/FormGroup'

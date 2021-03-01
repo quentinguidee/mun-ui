@@ -8,7 +8,8 @@ import {
     TextAreaField,
     SelectField,
     SelectMultipleField,
-    FormGroup
+    FormGroup,
+    ArrayNumberAndTextField
 } from 'mun-ui'
 
 export default class FormPage extends Component {
@@ -52,6 +53,10 @@ export default class FormPage extends Component {
                     />
                     <CheckboxExtendedField name='boolean' label='Boolean' />
                     <ArrayTextField name='array' label='Array' />
+                    <ArrayNumberAndTextField
+                        name='array-number'
+                        label='Array and number'
+                    />
                 </FormGroup>
             </Container>
         )
