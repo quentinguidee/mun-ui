@@ -1,10 +1,13 @@
 {
-  "name": "mun-ui",
+  "name": "@quentinguidee/mun-ui",
   "version": "0.2.0",
   "description": "A modern UI library",
   "author": "quentinguidee",
   "license": "MIT",
-  "repository": "quentinguidee/mun-ui",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/quentinguidee/mun-ui.git"
+  },
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.tsx",
