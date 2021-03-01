@@ -40,7 +40,7 @@ class Tag extends Component<TagProps> {
 interface SelectMultipleFieldProps
     extends Omit<Omit<TextFieldProps, 'ref'>, 'onChangeCallback'> {
     values: SelectValue[]
-    onChangeCallback?: (values: SelectValue[]) => void
+    onChangeCallback?: (values: SelectValue[], name: string | undefined) => void
 }
 
 type SelectMultipleFieldState = {
@@ -71,7 +71,10 @@ export class SelectMultipleField extends Component<
             },
             () => {
                 if (this.props.onChangeCallback)
-                    this.props.onChangeCallback(this.state.selectedValues)
+                    this.props.onChangeCallback(
+                        this.state.selectedValues,
+                        this.props.name
+                    )
             }
         )
     }
@@ -85,7 +88,10 @@ export class SelectMultipleField extends Component<
             },
             () => {
                 if (this.props.onChangeCallback)
-                    this.props.onChangeCallback(this.state.selectedValues)
+                    this.props.onChangeCallback(
+                        this.state.selectedValues,
+                        this.props.name
+                    )
             }
         )
     }

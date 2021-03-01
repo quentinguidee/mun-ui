@@ -10,7 +10,7 @@ type TextAreaFieldProps = Omit<
     'ref'
 > &
     IFieldProps & {
-        onChangeCallback?: (value: string) => void
+        onChangeCallback?: (value: string, name: string | undefined) => void
     }
 
 type TextAreaFieldState = {
@@ -40,13 +40,14 @@ export class TextAreaField extends Component<
         this.updateStatus(e.target.value)
         if (this.props.onChange) this.props.onChange(e)
         if (this.props.onChangeCallback)
-            this.props.onChangeCallback(e.target.value)
+            this.props.onChangeCallback(e.target.value, this.props.name)
     }
 
     onClear() {
         this.setState({ value: '' })
         this.updateStatus('')
-        if (this.props.onChangeCallback) this.props.onChangeCallback('')
+        if (this.props.onChangeCallback)
+            this.props.onChangeCallback('', this.props.name)
     }
 
     updateStatus(value: string) {

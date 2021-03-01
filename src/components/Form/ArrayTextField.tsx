@@ -59,7 +59,7 @@ type ArrayTextFieldProps = Omit<
     Omit<TextFieldProps, 'ref'>,
     'onChangeCallback'
 > & {
-    onChangeCallback?: (values: string[]) => void
+    onChangeCallback?: (values: string[], name: string | undefined) => void
 }
 
 type ArrayTextFieldState = {
@@ -95,7 +95,10 @@ export class ArrayTextField extends Component<
             },
             () => {
                 if (this.props.onChangeCallback)
-                    this.props.onChangeCallback(this.state.values)
+                    this.props.onChangeCallback(
+                        this.state.values,
+                        this.props.name
+                    )
             }
         )
     }
@@ -107,7 +110,10 @@ export class ArrayTextField extends Component<
             },
             () => {
                 if (this.props.onChangeCallback)
-                    this.props.onChangeCallback(this.state.values)
+                    this.props.onChangeCallback(
+                        this.state.values,
+                        this.props.name
+                    )
             }
         )
     }

@@ -63,7 +63,7 @@ type ArrayNumberAndSelectFieldProps = Omit<
     'onChangeCallback'
 > & {
     values: SelectValue[]
-    onChangeCallback?: (values: Value[]) => void
+    onChangeCallback?: (values: Value[], name: string | undefined) => void
 }
 
 type ArrayNumberAndSelectFieldState = {
@@ -114,7 +114,10 @@ export class ArrayNumberAndSelectField extends Component<
             },
             () => {
                 if (this.props.onChangeCallback)
-                    this.props.onChangeCallback(this.state.values)
+                    this.props.onChangeCallback(
+                        this.state.values,
+                        this.props.name
+                    )
             }
         )
     }
@@ -126,7 +129,10 @@ export class ArrayNumberAndSelectField extends Component<
             },
             () => {
                 if (this.props.onChangeCallback)
-                    this.props.onChangeCallback(this.state.values)
+                    this.props.onChangeCallback(
+                        this.state.values,
+                        this.props.name
+                    )
             }
         )
     }
