@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Cell, Container, Row, Table } from 'mun-ui'
+import { BooleanCell, Cell, Container, Row, Table } from 'mun-ui'
 
 export default class TablePage extends Component {
     render() {
@@ -15,13 +15,19 @@ export default class TablePage extends Component {
                     <Row>
                         <Cell>1</Cell>
                         <Cell>Jean</Cell>
-                        <Cell>true</Cell>
+                        <BooleanCell value={true} />
                         <Cell>Delete</Cell>
                     </Row>
                     <Row>
                         <Cell>2</Cell>
                         <Cell>Dupond</Cell>
-                        <Cell>false</Cell>
+                        <BooleanCell value={false} />
+                        <Cell>Delete</Cell>
+                    </Row>
+                    <Row>
+                        <Cell>3</Cell>
+                        <Cell>Roger</Cell>
+                        <BooleanCell value={undefined} />
                         <Cell>Delete</Cell>
                     </Row>
                 </Table>
