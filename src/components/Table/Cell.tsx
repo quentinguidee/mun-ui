@@ -4,8 +4,10 @@ import styled from '@emotion/styled'
 import { Component } from 'react'
 
 export const Cell = styled.td`
-    padding: 10px 14px;
+    padding: 12px 14px;
     color: ${(props) => props.theme.color.text};
+    vertical-align: top;
+    max-width: 200px;
 `
 
 type BooleanCellProps = {
@@ -30,7 +32,6 @@ export class BooleanCell extends Component<BooleanCellProps> {
                 <span
                     css={css(`
                         font-size: 16px;
-                        vertical-align: middle;
                     `)}
                     className='material-icons-round'
                 >
@@ -93,6 +94,42 @@ export class ColorCell extends Component<ColorCellProps> {
                 >
                     {this.props.value}
                 </span>
+            </Cell>
+        )
+    }
+}
+
+type ListCellProps = {
+    values: string[]
+}
+
+export class ListCell extends Component<ListCellProps> {
+    render() {
+        return (
+            <Cell
+                css={css(`
+                    padding: 6px 10px;
+                `)}
+            >
+                {this.props.values.map((v, i) => {
+                    return (
+                        <span
+                            key={i}
+                            css={(theme) =>
+                                css(`
+                                    display: inline-block;
+                                    border: 1px solid ${theme.color.thirdBackground};
+                                    border-radius: 4px;
+                                    padding: 4px 8px;
+                                    word-spacing: 4px;
+                                    margin: 2px;
+                                `)
+                            }
+                        >
+                            {v}
+                        </span>
+                    )
+                })}
             </Cell>
         )
     }
