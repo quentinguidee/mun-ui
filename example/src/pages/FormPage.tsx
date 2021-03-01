@@ -9,7 +9,8 @@ import {
     SelectField,
     SelectMultipleField,
     FormGroup,
-    ArrayNumberAndTextField
+    ArrayNumberAndTextField,
+    ArrayNumberAndSelectField
 } from 'mun-ui'
 
 export default class FormPage extends Component {
@@ -56,6 +57,20 @@ export default class FormPage extends Component {
                     <ArrayNumberAndTextField
                         name='array-number'
                         label='Array and number'
+                    />
+                    <ArrayNumberAndSelectField
+                        name='array-select'
+                        label='Array and select'
+                        values={[
+                            {
+                                key: 'one',
+                                label: 'One'
+                            },
+                            {
+                                key: 'two',
+                                label: 'Two'
+                            }
+                        ]}
                     />
                 </FormGroup>
             </Container>
