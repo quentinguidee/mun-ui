@@ -77,9 +77,12 @@ export class ArrayTextField extends Component<
         this.add = this.add.bind(this)
         this.clear = this.clear.bind(this)
         this.onInputChange = this.onInputChange.bind(this)
+        this.onInputKeyPress = this.onInputKeyPress.bind(this)
     }
 
     add() {
+        if (this.state.inputValue.length === 0) return
+
         this.setState({
             values: [...this.state.values, this.state.inputValue],
             inputValue: ''
@@ -98,6 +101,12 @@ export class ArrayTextField extends Component<
         })
     }
 
+    onInputKeyPress(e: React.KeyboardEvent<HTMLInputElement>) {
+        if (e.key === 'Enter') {
+            this.add()
+        }
+    }
+
     render() {
         return (
             <Field name={this.props.name} label={this.props.label}>
@@ -111,6 +120,7 @@ export class ArrayTextField extends Component<
                         {...this.props}
                         value={this.state.inputValue}
                         onChange={this.onInputChange}
+                        onKeyPress={this.onInputKeyPress}
                     />
                     <div
                         onClick={this.add}

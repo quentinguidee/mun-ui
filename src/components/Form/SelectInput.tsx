@@ -56,7 +56,7 @@ export type SelectValue = Value
 type SelectInputProps = {
     onFieldFocus?: () => void
     onSelectCallback?: (value: Value) => void
-    clearAfterSelection: boolean
+    clearAfterSelection?: boolean
     values: Value[]
 }
 
