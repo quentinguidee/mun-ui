@@ -24,7 +24,7 @@ const Item = styled.div`
     border-radius: 4px;
     color: ${(props) => props.theme.color.text};
     cursor: pointer;
-    &:first-child {
+    &:first-of-type {
         margin-top: 6px;
     }
     &:last-child {
