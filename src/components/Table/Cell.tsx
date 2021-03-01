@@ -40,3 +40,28 @@ export class BooleanCell extends Component<BooleanCellProps> {
         )
     }
 }
+
+type IdCellProps = {
+    value: number
+}
+
+export class IdCell extends Component<IdCellProps> {
+    render() {
+        return (
+            <Cell>
+                <span
+                    css={(theme) =>
+                        css(`
+                            background-color: ${theme.color.thirdBackground};
+                            font-family: monospace;
+                            border-radius: 4px;
+                            padding: 4px 8px;
+                        `)
+                    }
+                >
+                    {this.props.value}
+                </span>
+            </Cell>
+        )
+    }
+}
