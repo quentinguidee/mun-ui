@@ -65,3 +65,35 @@ export class IdCell extends Component<IdCellProps> {
         )
     }
 }
+
+type ColorCellProps = {
+    value: string
+    hex: string
+}
+
+export class ColorCell extends Component<ColorCellProps> {
+    render() {
+        return (
+            <Cell>
+                <span
+                    css={css(`
+                        background-color: ${this.props.hex};
+                        border-radius: 4px;
+                        width: 16px;
+                        height: 16px;
+                        display: inline-block;
+                        vertical-align: middle;
+                        margin-right: 8px;
+                    `)}
+                />
+                <span
+                    css={css(`
+                        vertical-align: middle;
+                    `)}
+                >
+                    {this.props.value}
+                </span>
+            </Cell>
+        )
+    }
+}
