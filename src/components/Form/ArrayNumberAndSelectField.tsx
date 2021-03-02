@@ -64,6 +64,7 @@ type ArrayNumberAndSelectFieldProps = Omit<
 > & {
     values: SelectValue[]
     onChangeCallback?: (values: Value[], name: string | undefined) => void
+    onSelectFieldFocus?: () => void
 }
 
 type ArrayNumberAndSelectFieldState = {
@@ -186,6 +187,7 @@ export class ArrayNumberAndSelectField extends Component<
                         {...this.props}
                         values={this.state.selectValues}
                         onSelectCallback={this.onSelect}
+                        onFieldFocus={this.props.onSelectFieldFocus}
                         clearAfterSelection
                     />
                 </div>
