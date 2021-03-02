@@ -93,6 +93,12 @@ export class SelectInput extends Component<SelectInputProps, SelectInputState> {
         this.closeDropdown()
     }
 
+    componentDidUpdate(prevProps: SelectInputProps) {
+        if (prevProps.values !== this.props.values) {
+            this.setState({ values: this.props.values })
+        }
+    }
+
     onFieldFocus(/* e: React.FocusEvent<any> */) {
         this.setState({ focused: true })
         document.addEventListener('mousedown', this.onMouseDown)
