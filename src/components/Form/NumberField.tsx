@@ -3,7 +3,10 @@ import { jsx, css } from '@emotion/react'
 import { Component } from 'react'
 import { TextField, TextFieldProps } from './TextField'
 
-interface NumberFieldProps extends Omit<TextFieldProps, 'ref'> {}
+interface NumberFieldProps extends Omit<TextFieldProps, 'ref'> {
+    onChangeCallback?: (value: string, name: string | undefined) => void
+    prefill?: string
+}
 
 export class NumberField extends Component<NumberFieldProps> {
     render() {

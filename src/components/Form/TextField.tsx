@@ -10,21 +10,25 @@ export interface TextFieldProps
             >,
             'ref'
         >,
-        IFieldProps {
-    onChangeCallback?: (value: string, name: string | undefined) => void
-}
+        IFieldProps {}
 
 type TextFieldState = {
     value: string
     status: FieldStatus
 }
 
-export class TextField extends Component<TextFieldProps, TextFieldState> {
+export class TextField extends Component<
+    TextFieldProps & {
+        onChangeCallback?: (value: string, name: string | undefined) => void
+        prefill?: string
+    },
+    TextFieldState
+> {
     constructor(props: TextFieldProps) {
         super(props)
 
         this.state = {
-            value: '',
+            value: this.props.prefill || '',
             status: FieldStatus.Undef
         }
 

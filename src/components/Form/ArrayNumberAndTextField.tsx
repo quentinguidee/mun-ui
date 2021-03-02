@@ -57,11 +57,9 @@ class Item extends Component<ItemProps> {
 
 type Value = { number: number; value: string }
 
-type ArrayTextFieldProps = Omit<
-    Omit<TextFieldProps, 'ref'>,
-    'onChangeCallback'
-> & {
+type ArrayTextFieldProps = Omit<TextFieldProps, 'ref'> & {
     onChangeCallback?: (values: Value[], name: string | undefined) => void
+    prefill?: Value[]
 }
 
 type ArrayTextFieldState = {
@@ -80,7 +78,7 @@ export class ArrayNumberAndTextField extends Component<
         this.state = {
             numberValue: '',
             inputValue: '',
-            values: []
+            values: this.props.prefill || []
         }
 
         this.add = this.add.bind(this)

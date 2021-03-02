@@ -3,13 +3,13 @@ import { Field } from './Field'
 import { SelectInput, SelectValue } from './SelectInput'
 import { TextFieldProps } from './TextField'
 
-interface SelectFieldProps
-    extends Omit<Omit<TextFieldProps, 'ref'>, 'onChangeCallback'> {
+interface SelectFieldProps extends Omit<TextFieldProps, 'ref'> {
     values: SelectValue[]
     onChangeCallback?: (
         value: SelectValue | undefined,
         name: string | undefined
     ) => void
+    prefill?: SelectValue
 }
 
 export class SelectField extends Component<SelectFieldProps> {
@@ -29,6 +29,7 @@ export class SelectField extends Component<SelectFieldProps> {
             <Field name={this.props.name} label={this.props.label}>
                 <SelectInput
                     {...this.props}
+                    prefill={this.props.prefill}
                     values={this.props.values}
                     onSelectCallback={this.onSelect}
                 />

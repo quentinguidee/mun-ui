@@ -58,13 +58,11 @@ class Item extends Component<ItemProps> {
 
 type Value = { number: number; value: SelectValue }
 
-type ArrayNumberAndSelectFieldProps = Omit<
-    Omit<TextFieldProps, 'ref'>,
-    'onChangeCallback'
-> & {
+type ArrayNumberAndSelectFieldProps = Omit<TextFieldProps, 'ref'> & {
     values: SelectValue[]
     onChangeCallback?: (values: Value[], name: string | undefined) => void
     onSelectFieldFocus?: () => void
+    prefill?: Value[]
 }
 
 type ArrayNumberAndSelectFieldState = {
@@ -84,7 +82,7 @@ export class ArrayNumberAndSelectField extends Component<
         this.state = {
             numberValue: '',
             selectValue: undefined,
-            values: [],
+            values: this.props.prefill || [],
             selectValues: this.props.values
         }
 
@@ -164,6 +162,8 @@ export class ArrayNumberAndSelectField extends Component<
     }
 
     render() {
+        const { prefill, ...props } = this.props
+
         return (
             <Field name={this.props.name} label={this.props.label}>
                 {this.state.values.map((value, i) => {
@@ -173,7 +173,7 @@ export class ArrayNumberAndSelectField extends Component<
                 })}
                 <div style={{ display: 'flex', flexDirection: 'row' }}>
                     <Input
-                        {...this.props}
+                        {...props}
                         css={css(`
                             min-width: 100px;
                             width: 100px;
@@ -184,7 +184,7 @@ export class ArrayNumberAndSelectField extends Component<
                         onChange={this.onNumberChange}
                     />
                     <SelectInput
-                        {...this.props}
+                        {...props}
                         values={this.state.selectValues}
                         onSelectCallback={this.onSelect}
                         onFieldFocus={this.props.onSelectFieldFocus}

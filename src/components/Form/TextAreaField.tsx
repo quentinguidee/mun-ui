@@ -11,6 +11,7 @@ type TextAreaFieldProps = Omit<
 > &
     IFieldProps & {
         onChangeCallback?: (value: string, name: string | undefined) => void
+        prefill?: string
     }
 
 type TextAreaFieldState = {
@@ -26,7 +27,7 @@ export class TextAreaField extends Component<
         super(props)
 
         this.state = {
-            value: '',
+            value: this.props.prefill || '',
             status: FieldStatus.Undef
         }
 

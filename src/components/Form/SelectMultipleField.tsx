@@ -37,10 +37,10 @@ class Tag extends Component<TagProps> {
     }
 }
 
-interface SelectMultipleFieldProps
-    extends Omit<Omit<TextFieldProps, 'ref'>, 'onChangeCallback'> {
+interface SelectMultipleFieldProps extends Omit<TextFieldProps, 'ref'> {
     values: SelectValue[]
     onChangeCallback?: (values: SelectValue[], name: string | undefined) => void
+    prefill?: SelectValue[]
 }
 
 type SelectMultipleFieldState = {
@@ -55,7 +55,7 @@ export class SelectMultipleField extends Component<
         super(props)
 
         this.state = {
-            selectedValues: []
+            selectedValues: this.props.prefill || []
         }
 
         this.select = this.select.bind(this)
@@ -97,6 +97,8 @@ export class SelectMultipleField extends Component<
     }
 
     render() {
+        const { prefill, ...props } = this.props
+
         return (
             <Field name={this.props.name} label={this.props.label}>
                 {this.state.selectedValues.map((value) => {
@@ -105,7 +107,7 @@ export class SelectMultipleField extends Component<
                     )
                 })}
                 <SelectInput
-                    {...this.props}
+                    {...props}
                     values={this.props.values}
                     onSelectCallback={this.select}
                     clearAfterSelection

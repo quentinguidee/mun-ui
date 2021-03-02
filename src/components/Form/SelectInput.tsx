@@ -58,6 +58,7 @@ type SelectInputProps = {
     onSelectCallback?: (value: Value | undefined) => void
     clearAfterSelection?: boolean
     values: Value[]
+    prefill?: Value
 }
 
 type SelectInputState = {
@@ -75,7 +76,7 @@ export class SelectInput extends Component<SelectInputProps, SelectInputState> {
 
         this.state = {
             focused: false,
-            selected: undefined,
+            selected: this.props.prefill,
             inputValue: '',
             values: this.props.values
         }

@@ -70,6 +70,7 @@ type CheckboxExtendedFieldProps = React.DetailedHTMLProps<
 > & {
     label?: string
     onChangeCallback?: (value: string, name: string | undefined) => void
+    prefill?: string
 }
 
 type CheckboxExtendedFieldState = {
@@ -84,7 +85,7 @@ export class CheckboxExtendedField extends Component<
         super(props)
 
         this.state = {
-            selection: 'undef'
+            selection: this.props.prefill || 'undef'
         }
 
         this.select = this.select.bind(this)
