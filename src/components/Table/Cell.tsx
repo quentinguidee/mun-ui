@@ -8,6 +8,7 @@ export const Cell = styled.td`
     color: ${(props) => props.theme.color.text};
     vertical-align: top;
     max-width: 200px;
+    min-width: 200px;
 `
 
 type BooleanCellProps = {
