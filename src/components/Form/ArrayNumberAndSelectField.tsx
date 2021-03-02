@@ -70,6 +70,7 @@ type ArrayNumberAndSelectFieldState = {
     numberValue: string
     selectValue: SelectValue | undefined
     values: Value[]
+    selectValues: SelectValue[]
 }
 
 export class ArrayNumberAndSelectField extends Component<
@@ -82,13 +83,20 @@ export class ArrayNumberAndSelectField extends Component<
         this.state = {
             numberValue: '',
             selectValue: undefined,
-            values: []
+            values: [],
+            selectValues: this.props.values
         }
 
         this.add = this.add.bind(this)
         this.clear = this.clear.bind(this)
         this.onNumberChange = this.onNumberChange.bind(this)
         this.onSelect = this.onSelect.bind(this)
+    }
+
+    componentDidUpdate(prevProps: ArrayNumberAndSelectFieldProps) {
+        if (prevProps.values !== this.props.values) {
+            this.setState({ selectValues: this.props.values })
+        }
     }
 
     add() {
@@ -176,7 +184,7 @@ export class ArrayNumberAndSelectField extends Component<
                     />
                     <SelectInput
                         {...this.props}
-                        values={this.props.values}
+                        values={this.state.selectValues}
                         onSelectCallback={this.onSelect}
                         clearAfterSelection
                     />
