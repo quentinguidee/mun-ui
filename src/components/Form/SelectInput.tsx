@@ -77,7 +77,7 @@ export class SelectInput extends Component<SelectInputProps, SelectInputState> {
         this.state = {
             focused: false,
             selected: this.props.prefill,
-            inputValue: '',
+            inputValue: this.props.prefill?.label || '',
             values: this.props.values
         }
 
