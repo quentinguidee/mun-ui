@@ -5,10 +5,15 @@ import {
     HeaderLink,
     HeaderLinks,
     HeaderLogo,
-    HeaderSpace
+    HeaderSpace,
+    HeaderThemeToggle
 } from 'mun-ui'
 
-export default class Header extends Component {
+type HeaderProps = {
+    toggleTheme: () => void
+}
+
+export default class Header extends Component<HeaderProps> {
     render() {
         return (
             <MunHeader>
@@ -19,6 +24,7 @@ export default class Header extends Component {
                     <HeaderLink to='/form'>Form</HeaderLink>
                 </HeaderLinks>
                 <HeaderSpace grow={5} />
+                <HeaderThemeToggle onClick={this.props.toggleTheme} />
                 <HeaderAccount
                     src='https://picsum.photos/seed/seed/40'
                     name='Username'
