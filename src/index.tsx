@@ -16,6 +16,9 @@ export * from './components/Header/HeaderSpace'
 export * from './components/Header/HeaderAccount'
 export * from './components/Header/HeaderThemeToggle'
 
+export * from './components/StatusBar/StatusBar'
+export * from './components/StatusBar/StatusBarItem'
+
 export * from './components/Form/ArrayNumberAndSelectField'
 export * from './components/Form/ArrayNumberAndTextField'
 export * from './components/Form/ArrayTextField'

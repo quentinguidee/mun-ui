@@ -8,10 +8,13 @@ declare module '@emotion/react' {
             thirdBackground: string
             text: string
             secondaryText: string
+            invertedText: string
             accent: string
             green: string
             yellow: string
+            orange: string
             red: string
+            white: string
         }
     }
 }
@@ -23,10 +26,13 @@ export const lightTheme = {
         thirdBackground: '#dbdbdb',
         text: '#000',
         secondaryText: '#2e2e2e',
+        invertedText: '#e7e7e7',
         accent: '#39a0cf',
         green: '#66bb6a',
-        yellow: '#d6b33f',
-        red: '#ef5350'
+        yellow: '#b9951f',
+        orange: '#d6763f',
+        red: '#ef5350',
+        white: '#e7e7e7'
     }
 }
 
@@ -37,9 +43,12 @@ export const darkTheme = {
         thirdBackground: '#353535',
         text: '#e7e7e7',
         secondaryText: '#a7a7a7',
+        invertedText: '#000',
         accent: '#2c83ac',
         green: '#408a31',
         yellow: '#c5a050',
-        red: '#862e2e'
+        orange: '#c46b37',
+        red: '#862e2e',
+        white: '#e7e7e7'
     }
 }

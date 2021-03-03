@@ -6,6 +6,7 @@ import { darkTheme, lightTheme, MunApp } from 'mun-ui'
 import { ThemeProvider } from '@emotion/react'
 import { BrowserRouter, Route } from 'react-router-dom'
 import Header from './components/Header'
+import StatusBar from './components/StatusBar'
 import TablePage from './pages/TablePage'
 import FormPage from './pages/FormPage'
 
@@ -22,6 +23,7 @@ export class App extends Component<{}, { isLightTheme: boolean }> {
             >
                 <MunApp>
                     <BrowserRouter>
+                        <StatusBar />
                         <Header
                             toggleTheme={() => {
                                 this.setState({
