@@ -29,7 +29,7 @@ export const lightTheme = {
         invertedText: '#e7e7e7',
         accent: '#39a0cf',
         green: '#66bb6a',
-        yellow: '#b9951f',
+        yellow: '#d3af3a',
         orange: '#d6763f',
         red: '#ef5350',
         white: '#e7e7e7'
@@ -48,7 +48,7 @@ export const darkTheme = {
         green: '#408a31',
         yellow: '#c5a050',
         orange: '#c46b37',
-        red: '#862e2e',
+        red: '#aa4141',
         white: '#e7e7e7'
     }
 }

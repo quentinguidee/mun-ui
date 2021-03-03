@@ -20,7 +20,7 @@ export class Message extends Component<MessageProps> {
                 color = 'red'
                 break
             case FieldStatus.Warning:
-                color = 'yellow'
+                color = 'orange'
                 break
             default:
                 break
@@ -36,6 +36,7 @@ export class Message extends Component<MessageProps> {
                     margin-left: 8px;
                     margin-top: 6px;
                     font-size: 14px;
+                    font-weight: 500;
                 `)}
             >
                 {this.props.children}
