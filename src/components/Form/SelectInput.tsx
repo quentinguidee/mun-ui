@@ -144,7 +144,6 @@ export class SelectInput extends Component<SelectInputProps, SelectInputState> {
             selected: undefined,
             inputValue: ''
         })
-        if (this.props.onSelectCallback) this.props.onSelectCallback(undefined)
     }
 
     render() {
